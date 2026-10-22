@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MyExcelMAUIApp.MainPage"
+    Title="My Excel MAUI">
+
+    <Grid Padding="10" RowDefinitions="Auto,Auto,Auto,Auto,*" RowSpacing="8">
+
+        <!-- Панель кнопок -->
+        <ScrollView Grid.Row="0" Orientation="Horizontal">
+            <HorizontalStackLayout Spacing="6">
+                <Button Text="Порахувати" Clicked="CalculateButton_Clicked" />
+                <Button Text="Зберегти" Clicked="SaveButton_Clicked" />
+                <Button Text="Прочитати" Clicked="ReadButton_Clicked" />
+                <Button Text="Додати рядок" Clicked="AddRowButton_Clicked" />
+                <Button Text="Видалити рядок" Clicked="DeleteRowButton_Clicked" />
+                <Button Text="Додати стовпчик" Clicked="AddColumnButton_Clicked" />
+                <Button Text="Видалити стовпчик" Clicked="DeleteColumnButton_Clicked" />
+                <Button Text="Довідка" Clicked="HelpButton_Clicked" />
+                <Button Text="Про програму" Clicked="AboutButton_Clicked" />
+                <Button Text="Вийти" Clicked="ExitButton_Clicked" />
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- Рядок введення: ім'я вибраної клітинки та її вираз -->
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*" ColumnSpacing="8">
+            <Label x:Name="cellNameLabel"
+                   Text="—"
+                   WidthRequest="50"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center" />
+            <Label Grid.Column="1" Text="Вираз:" VerticalOptions="Center" />
+            <Entry x:Name="textInput"
+                   Grid.Column="2"
+                   Placeholder="Вміст вибраної клітинки (Enter — застосувати). Вираз починається зі знака «=»"
+                   ReturnType="Done"
+                   Completed="TextInput_Completed" />
+        </Grid>
+
+        <!-- Режим відображення: ВИРАЗ / ЗНАЧЕННЯ -->
+        <HorizontalStackLayout Grid.Row="2" Spacing="8">
+            <Label Text="Режим відображення:" VerticalOptions="Center" />
+            <Label Text="ВИРАЗ" FontAttributes="Bold" VerticalOptions="Center" />
+            <Switch x:Name="modeSwitch" Toggled="ModeSwitch_Toggled" VerticalOptions="Center" />
+            <Label Text="ЗНАЧЕННЯ" FontAttributes="Bold" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- Повідомлення про помилки -->
+        <Label x:Name="statusLabel" Grid.Row="3" LineBreakMode="WordWrap" />
+
+        <!-- Таблиця -->
+        <ScrollView Grid.Row="4" Orientation="Both">
+            <Grid x:Name="grid"
+                  RowSpacing="1"
+                  ColumnSpacing="1"
+                  BackgroundColor="#B8B8B8"
+                  Padding="1" />
+        </ScrollView>
+    </Grid>
+</ContentPage>

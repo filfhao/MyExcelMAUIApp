@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>LabCalculator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Середовище виконання ANTLR 4 для C# -->
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
+    <!-- Генерує лексер, парсер і візитор із .g4 під час збирання (потрібна Java / JDK 11+) -->
+    <PackageReference Include="Antlr4BuildTasks" Version="12.8" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Antlr4 Include="LabCalculator.g4">
+      <Package>LabCalculator</Package>
+      <Visitor>true</Visitor>
+      <Listener>false</Listener>
+    </Antlr4>
+  </ItemGroup>
+
+</Project>
